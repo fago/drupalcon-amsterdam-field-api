@@ -193,36 +193,31 @@
         </ul>
         <p class="note next">Beware of required fields with no default values...</p>
     </div></section>
+
     <!-- Form modes - UI -->
     <section class="slide wide"><div>
         <h2>Form modes UI</h2>
         <img class="border center" src="pictures/form_modes.png"/>
     </div></section>
+
     <!-- Field UI - field lists -->
     <section class="slide wide"><div>
         <h2>Field Overview UI</h2>
         <img class="border center" src="pictures/field_overview.png"/>
     </div></section>
 
-    <!-- Field per entity type-->
+    <!-- comment as field -->
+
+    <!-- Form modes - UI -->
     <section class="slide"><div>
-        <h2>Fields are tied to an entity type</h2>
-        <p>A field cannot be "shared" across entity types,<br>
-            only across bundles of a given entity type</p>
-        <div class="next">
-            <b>Consequences:</b>
-            <ul>
-                <li>No need to clutter the field name ('comment_body')<br>
-                    node 'body' != comment 'body'</li>
-                <li class="next">A $field_name alone is not enough:<br>
-                    <code class="indent">$field = field_info_field($entity_type, $name);</code><br>
-                    <code class="indent">&lt;div class="field-name-body field-node--body"></code><br>
-                </li>
-            </ul>
-        </div>
+        <h2>Comment is now a field</h2>
+        <ul>
+            <li>Comment field stores the settings: open, same page, listing per page</li>
+            <li>Comments on any entity type</li>
+            <li>Multiple comments on an entity type</li>
+        </ul>
     </div></section>
 
-    <!-- comment as field -->
     <!-- APIs -->
     <section class="slide cover w h"><div>
         <img src="pictures/comment.jpg"/>
