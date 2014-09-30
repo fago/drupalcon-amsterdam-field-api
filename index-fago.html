@@ -26,10 +26,10 @@
     <section class="slide"><div>
         <h2>Entities have grown up!</h2>
         <ul>
-            <li class="next">Full CRUD support</li>
-            <li class="next">Classed objects</li>
-            <li class="next">Interfaces, methods</li>
-            <li class="next">+ a lot more!</li>
+            <li class="">Full CRUD support</li>
+            <li class="">Classed objects</li>
+            <li class="">Interfaces, methods</li>
+            <li class="">+ a lot more!</li>
         </ul>
     </div></section>
 
@@ -52,10 +52,12 @@
     <section class="slide"><div>
         <h2>Interfaces</h2>
         <pre><code>
+
             $node implements EntityInterface;
             $node implements NodeInterface;
 
             NodeInterface extends EntityInterface;
+
         </code></pre>
     </div></section>
 
@@ -65,8 +67,10 @@
             $node = Node::load($id);
 
             if (!$node->isPublished()) {
+
               $node->setTitle('published');
               $node->setPublished(TRUE);
+
               $node->save();
             }
         </code></pre>
@@ -80,19 +84,34 @@
     <section class="slide"><div>
         <h2>Working with entities</h2>
         <pre><code>
+            $entity->label();
+            $entity->id();
+            $entity->bundle();
+            $entity->url();
+            $entity->toArray();
+            $entity->validate();
+
+            if ($entity->access('view')) {
+              // ...
+            }
+        </code></pre>
+    </div></section>
+
+    <section class="slide"><div>
+        <h2>Leveraging handlers</h2>
+        <pre><code>
             $manager = \Drupal::entityManager();
 
             $manager->getStorage($entity_type)
               ->load($id);
             $manager->getFormObject($entity_type)
               ->buildForm($form, $form_state);
-            $manager->getAccessControlHandler($entity_type)
-              ->access($node, 'view');
+            $manager->getAccessControlHandler('node')
+              ->createAccess('page');
 
             $manager->getHandler($entity_type, 'storage');
         </code></pre>
     </div></section>
-
 
     <section class="slide"><div>
         <h2>Entity types</h2>
@@ -108,12 +127,68 @@
         </code></pre>
     </div></section>
 
+    <section class="slide"><div>
+        <h2>Built-in translation support</h2>
+        <pre><code>
+            $translation = $node->getTranslation('de');
+            $translation instanceof NodeInterface;
+
+            $translation->getTitle();
+            $translation->language()->id == 'de';
+
+            $entity = $translation->getUntranslated();
+        </code></pre>
+    </div></section>
+
+    <section class="slide"><div>
+        <h2>All the things!</h2>
+        <p class="">Entities</p>
+        <p class="">=</p>
+        <p class="next">
+            Content
+        </p>
+        <p class="next">
+            +
+        </p>
+        <p class="next">
+            Configuration
+        </p>
+    </div></section>
+
+    <section class="slide"><div>
+        <h2>Specialized interfaces</h2>
+        <pre><code>
 
 
+            ContentEntityInterface instanceof EntityInterface;
+
+            ConfigEntityInterface instanceof EntityInterface;
 
 
+        </code></pre>
 
+    </div></section>
 
+    <section class="slide"><div>
+        <h2>Configuration entities</h2>
+        <ul>
+            <li class="next">Stored to configuration management</li>
+            <li class="next">Simple objects with properties</li>
+            <li class="next">Node types, Views, Image styles, ...</li>
+        </ul>
+
+    </div></section>
+
+    <section class="slide"><div>
+        <h2>Content entities</h2>
+        <ul>
+            <li class="next">Fieldable</li>
+            <li class="next">Revisionable</li>
+            <li class="next">Translatable</li>
+            <li class="next">Nodes, Users, Comments, ...</li>
+        </ul>
+
+    </div></section>
 
 
 
